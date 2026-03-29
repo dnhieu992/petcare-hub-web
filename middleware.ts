@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const RESERVED_SUBDOMAINS = new Set(['www', 'app', 'api', 'admin', 'mail', 'ftp', 'localhost'])
-const SLUG_PATTERN = /^[a-z0-9-]{1,63}$/
+const SLUG_PATTERN = /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/
 
 export function middleware(request: NextRequest) {
   const hostname = request.nextUrl.hostname
