@@ -7,10 +7,11 @@ const api = axios.create({
 
 function getTenantSlugFromCookie(): string | undefined {
   if (typeof document === 'undefined') return undefined // SSR guard
-  return document.cookie
+  const row = document.cookie
     .split('; ')
-    .find((row) => row.startsWith('tenant-slug='))
-    ?.split('=')[1]
+    .find((r) => r.startsWith('tenant-slug='))
+  if (!row) return undefined
+  return decodeURIComponent(row.split('=').slice(1).join('='))
 }
 
 api.interceptors.request.use((config) => {

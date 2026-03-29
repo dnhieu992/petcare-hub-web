@@ -17,5 +17,9 @@ export async function getTenantBySlug(slug: string): Promise<Tenant | null> {
 
   if (res.status === 404) return null
   if (!res.ok) throw new Error(`Unexpected status ${res.status} fetching tenant`)
-  return (await res.json()) as Tenant
+  const data = await res.json()
+  if (!data?.clinicId || typeof data.clinicId !== 'string') {
+    throw new Error('Invalid tenant response: missing clinicId')
+  }
+  return data as Tenant
 }

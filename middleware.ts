@@ -10,7 +10,8 @@ export function middleware(request: NextRequest) {
   // Bare hostname with no subdomain (e.g., "localhost")
   if (parts.length === 1) return NextResponse.next()
 
-  // Two-segment hostname: root domain (petapp.com) → skip; subdomain on localhost (clinic1.localhost) → proceed
+  // Two-segment hostname: if second part is NOT "localhost", treat as root domain (e.g. petapp.com) → skip.
+  // If second part IS "localhost" (e.g. clinic1.localhost), first part is a subdomain → proceed.
   if (parts.length === 2 && parts[1] !== 'localhost') return NextResponse.next()
 
   const slug = parts[0]
@@ -39,5 +40,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|public/).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|public/|api/).*)'],
 }
