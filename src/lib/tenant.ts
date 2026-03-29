@@ -18,8 +18,13 @@ export async function getTenantBySlug(slug: string): Promise<Tenant | null> {
   if (res.status === 404) return null
   if (!res.ok) throw new Error(`Unexpected status ${res.status} fetching tenant`)
   const data = await res.json()
-  if (!data?.clinicId || typeof data.clinicId !== 'string') {
-    throw new Error('Invalid tenant response: missing clinicId')
+  if (
+    !data?.clinicId || typeof data.clinicId !== 'string' ||
+    typeof data.clinicName !== 'string' ||
+    typeof data.slug !== 'string' ||
+    typeof data.primaryColor !== 'string'
+  ) {
+    throw new Error('Invalid tenant response: missing required fields')
   }
   return data as Tenant
 }
