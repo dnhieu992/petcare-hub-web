@@ -1,5 +1,6 @@
 // src/lib/axios.ts
 import axios from 'axios'
+import { getStoredAccessToken } from './auth'
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -16,9 +17,16 @@ function getTenantSlugFromCookie(): string | undefined {
 
 api.interceptors.request.use((config) => {
   const slug = getTenantSlugFromCookie()
+  const accessToken = getStoredAccessToken()
+
   if (slug) {
     config.headers['X-Tenant-Slug'] = slug
   }
+
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`
+  }
+
   return config
 })
 

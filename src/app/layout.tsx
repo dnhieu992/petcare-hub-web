@@ -8,7 +8,9 @@ import './globals.css'
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const headersList = await headers()
-  const slug = headersList.get('x-tenant-slug')
+  const slug =
+    headersList.get('x-tenant-slug') ??
+    (process.env.NODE_ENV === 'production' ? null : 'demo-company')
 
   if (!slug) return notFound()
 

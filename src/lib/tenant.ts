@@ -1,9 +1,20 @@
 // src/lib/tenant.ts
 import type { Tenant } from './tenant-context'
 
+const FALLBACK_TENANT: Tenant = {
+  clinicId: 'clinic_demo',
+  clinicName: 'Demo Company',
+  slug: 'demo-company',
+  primaryColor: '#0f172a',
+  logoUrl: null,
+}
+
 export async function getTenantBySlug(slug: string): Promise<Tenant | null> {
   const baseUrl = process.env.API_URL
-  if (!baseUrl) throw new Error('API_URL environment variable is not set')
+
+  if (!baseUrl) {
+    return process.env.NODE_ENV === 'production' ? null : FALLBACK_TENANT
+  }
 
   let res: Response
   try {
@@ -12,7 +23,7 @@ export async function getTenantBySlug(slug: string): Promise<Tenant | null> {
     })
   } catch (err) {
     console.error('[getTenantBySlug] Network error:', err)
-    return null
+    return process.env.NODE_ENV === 'production' ? null : FALLBACK_TENANT
   }
 
   if (res.status === 404) return null

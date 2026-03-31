@@ -1,8 +1,8 @@
+import { ActivateForm } from '@/features/auth/components/ActivateForm'
 import { AuthHydrator } from '@/features/auth/components/AuthHydrator'
 import { GuestGuard } from '@/features/auth/components/GuestGuard'
-import { LoginForm } from '@/features/auth/components/LoginForm'
 
-export default function LoginPage() {
+export default function ActivatePage() {
   return (
     <AuthHydrator>
       <GuestGuard>
@@ -12,13 +12,15 @@ export default function LoginPage() {
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
                 Petcare Hub
               </p>
-              <h1 className="text-3xl font-semibold text-slate-900">Log in</h1>
+              <h1 className="text-3xl font-semibold text-slate-900">
+                Activate your account
+              </h1>
               <p className="text-sm text-slate-600">
-                Use the demo owner account or a pending activation account to
-                walk the mocked auth flow.
+                Enter the passcode sent to your email to finish first-time
+                setup.
               </p>
             </div>
-            <LoginForm />
+            <ActivateForm />
           </section>
         </main>
       </GuestGuard>
