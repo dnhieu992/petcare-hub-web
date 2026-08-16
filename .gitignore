@@ -1,5 +1,31 @@
+# dependencies
 node_modules
+.pnpm-store
+
+# builds
 .next
+dist
+build
+out
+
+# turbo
+.turbo
+
+# env
+.env
 .env.local
+.env.*.local
+
+# typescript
+*.tsbuildinfo
+
+# editor / os
+.DS_Store
 .claude/settings.local.json
+CLAUDE.local.md
 .worktrees/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

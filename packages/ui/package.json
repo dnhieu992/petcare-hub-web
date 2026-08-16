@@ -1,0 +1,25 @@
+{
+  "name": "@petcare/ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./components/*": "./src/components/*.tsx",
+    "./styles/*": "./src/styles/*",
+    "./tokens": "./src/tokens/index.ts",
+    "./lib/*": "./src/lib/*.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@petcare/config": "workspace:*",
+    "typescript": "^5"
+  }
+}

@@ -1,10 +1,4 @@
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import base from "@petcare/config/eslint/base";
 
-const eslintConfig = [
-  {
-    ignores: [".worktrees/**"],
-  },
-  ...nextCoreWebVitals,
-];
-
-export default eslintConfig;
+/** Root-level lint (config files, scripts). Apps/packages have their own config. */
+export default base;

@@ -1,0 +1,27 @@
+{
+  "name": "@petcare/config",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./eslint/base": "./eslint/base.js",
+    "./eslint/react": "./eslint/react.js",
+    "./eslint/next": "./eslint/next.js",
+    "./tailwind": "./tailwind/index.ts",
+    "./typescript/base.json": "./typescript/base.json",
+    "./typescript/react-app.json": "./typescript/react-app.json",
+    "./typescript/next-app.json": "./typescript/next-app.json"
+  },
+  "dependencies": {
+    "@eslint/js": "^9",
+    "typescript-eslint": "^8",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-react-hooks": "^5",
+    "eslint-config-prettier": "^9",
+    "globals": "^15"
+  },
+  "peerDependencies": {
+    "eslint": "^9",
+    "typescript": "^5"
+  }
+}
